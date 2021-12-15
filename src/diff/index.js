@@ -23,8 +23,8 @@ import options from '../options';
  * @param {boolean} [isHydrating] Whether or not we are in hydration
  */
 export function diff(
-	parentDom,
-	newVNode,
+	parentDom, // container
+	newVNode, //
 	oldVNode,
 	globalContext,
 	isSvg,
