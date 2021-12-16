@@ -1,12 +1,14 @@
 /**
  * @jsx h
  */
-import { render, h } from '../src/index';
+import { render, h } from '../src/index.js';
 
-const q = (...arg) => document.querySelector(...arg);
+const _renderInParent = () => {
+	const q = (...arg) => document.querySelector(...arg);
 
-const app = <div>1</div>;
+	const app = <div className="test">1</div>;
 
-render(app, q('#app'));
+	render(app, q('#app'));
+};
 
-// console.log('1');
+_renderInParent();
