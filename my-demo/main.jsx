@@ -2,7 +2,7 @@
 /**
  * @jsx h
  */
-import { render, h, Component } from '../src/index.js';
+import { Component, h, render } from '../src/index.js';
 
 const q = (...arg) => document.querySelector(...arg);
 
@@ -32,6 +32,7 @@ const _renderClassC = () => {
 		state = {
 			a: 1
 		};
+
 		render(props, state) {
 			return (
 				<div>
@@ -45,4 +46,62 @@ const _renderClassC = () => {
 	render(<App />, q('#app'));
 };
 
-_renderClassC();
+// _renderClassC();
+
+const _renderClassUpdate = () => {
+	class App extends Component {
+		state = {
+			a: true
+		};
+
+		render(props, state) {
+			if (state.a) {
+				return (
+					<div>
+						<button onClick={() => this.setState({ a: !state.a })}>
+							toggle
+						</button>
+						div
+					</div>
+				);
+			}
+			return (
+				<p>
+					<button onClick={() => this.setState({ a: !state.a })}>toggle</button>
+					p
+				</p>
+			);
+		}
+	}
+
+	render(<App />, q('#app'));
+};
+// _renderClassUpdate();
+
+const _renderClassUpdateProps = () => {
+	class B extends Component {
+		render(props) {
+			return <div>{props.a}</div>;
+		}
+	}
+
+	class App extends Component {
+		state = {
+			a: 1
+		};
+
+		constructor() {
+			super();
+			window.a = () => {
+				this.setState({ a: this.state.a + 1 });
+			};
+		}
+
+		render(props, state) {
+			return <B a={state.a} />;
+		}
+	}
+
+	render(<App />, q('#app'));
+};
+_renderClassUpdateProps();

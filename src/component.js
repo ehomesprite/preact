@@ -213,7 +213,7 @@ export function enqueueRender(c) {
 function process() {
 	let queue;
 	while ((process._rerenderCount = rerenderQueue.length)) {
-		queue = rerenderQueue.sort((a, b) => a._vnode._depth - b._vnode._depth);
+		queue = rerenderQueue.sort((a, b) => a._vnode._depth - b._vnode._depth); // 从高到低
 		rerenderQueue = [];
 		// Don't update `renderCount` yet. Keep its value non-zero to prevent unnecessary
 		// process() calls from getting scheduled while `queue` is still being consumed.
