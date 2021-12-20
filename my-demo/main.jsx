@@ -2,7 +2,7 @@
 /**
  * @jsx h
  */
-import { Component, h, render } from '../src/index.js';
+import { Component, h, render, hydrate } from '../src/index.js';
 
 const q = (...arg) => document.querySelector(...arg);
 
@@ -104,4 +104,30 @@ const _renderClassUpdateProps = () => {
 
 	render(<App />, q('#app'));
 };
-_renderClassUpdateProps();
+// _renderClassUpdateProps();
+
+const _hydrate = () => {
+	class App extends Component {
+		state = {
+			a: 1
+		};
+
+		render(props, state) {
+			return (
+				<div
+					className="content"
+					id="1"
+					onClick={() => {
+						this.setState({ a: state.a + 1 });
+					}}
+				>
+					{state.a}
+				</div>
+			);
+		}
+	}
+
+	hydrate(<App />, q('#hydrate'));
+};
+
+_hydrate();
